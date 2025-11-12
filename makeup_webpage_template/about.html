@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-section {
+            margin: 60px 200px;
+            padding: 10px;
+            background: #ffd2bc;
+            border-radius: 14px;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+            opacity: 0;
+            transition: opacity 1.2s, transform 1.2s;
+        }
+        .about-section.visible {
+            opacity: 3;
+            transform: translateY(10px);
+        }
+
+        .about-section:hover{
+            transform: translate3d(10px, 10px, 0);
+        }
+        .about-title {
+            font-size: 2em;
+            color: #da8277dc;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .about-subtitle {
+            font-size: 1.2em;
+            color: #f8b500;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .about-text {
+            font-size: 1.1em;
+            color: black;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .controls {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+      
+        .btn, .back-btn {
+            color: #da8277dc;
+            background: white;
+            border: 2px solid #ffd2bc;
+            border-radius: 7px;
+            padding: 10px 10px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 18px 30px 1px;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover, .back-btn:hover {
+            background: #f8b500;
+            color: #da8277dc;
+        }
+        #backToTop {
+            position: fixed;
+            bottom: 70px;
+            right: 30px;
+            z-index: 10;
+            opacity: 0.85;
+            pointer-events: auto;
+            transition: opacity 0.5s;
+        }
+        
+        @media (max-width: 800px) {
+            .nav-content { flex-direction: column; gap: 8px; padding: 16px 12px;}
+            .site-title { font-size: 1.3em;}
+            .nav-links a { margin-left: 18px; font-size: 1em;}
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+  <div class="ticker" role="region" aria-label="Scrolling text">
+  <div class="ticker__text">
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+  </div>
+</div>
+  <div class="container">
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="index.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img src="BeautyVibeLogo.png" alt="BeautyVibe Logo">
+    </div>
+      <div class="search-box">
+      <input type="text" id="SearchInput" placeholder="Search...">
+      <i class="fas fa-search"></i>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="cart.php" class="cart-icon"><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href="account.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+        </ul>
+      </nav>
+  </div>
+</header>
+<main>
+    <a href="index.html" class="back-btn">&#8592; Back</a> <!-- Navigation Back Button -->
+    <div class="controls">
+        <button class="btn" id="musicBtn">Play Music</button>
+        <button class="btn" id="scrollBtn">Scroll Down</button>
+    </div>
+    <div class="about-section">
+        <div class="about-title">Welcome to BeautyVibe!</div>
+        <div class="about-subtitle">Express Your Unique Beauty</div>
+        <div class="about-text">
+                Discover a place where beauty meets creativity.<br>
+                Our passion is to help every person feel confident and radiant.<br>
+                Started in 2025, BeautyVibe is more than a shop—it's a community.<br>
+            </div>
+    </div>
+     <div class="about-section">
+            <div class="about-title">Our Mission</div>
+            <div class="about-subtitle">Empower, Enrich, Enhance</div>
+            <div class="about-text">
+                We believe makeup should be fun, effortless, and inclusive.<br>
+                From bold lipsticks to radiant foundations, every product is chosen for quality and joy.<br>
+            </div>
+    </div>
+    <div class="about-section">
+            <div class="about-title">Join the Glow!</div>
+            <div class="about-text">
+                Be a part of our vibrant community.<br>
+                Follow us on social media, share your looks, and let your light shine.<br>
+                <span style="color:#da8277dc;">#BeautyVibe</span>
+            </div>
+    </div>
+    <button id="backToTop" class="btn" title="Back to Top">&#8593; Top</button>
+    <audio id="bgAudio" src="Archangel (Slowed) - Dj Anemia, Crier, Sixnite [Edit Audio].mp3" loop></audio>
+</main>
+<footer class="footer">
+    <p>&copy; 2025 BeautyVibe. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+    <script>
+        // Fade-in sections as they scroll into view
+        function revealSections() {
+            document.querySelectorAll('.about-section').forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    sec.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('DOMContentLoaded', revealSections);
+
+        // Auto-scroll feature - only when user clicks the button
+        let scrollActive = false;
+        let scrollInterval = null;
+        function startScroll() {
+            if (!scrollActive) {
+                scrollActive = true;
+                document.getElementById('scrollBtn').textContent = 'Pause Scroll';
+                scrollInterval = setInterval(() => {
+                    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 2)) {
+                        stopScroll();
+                    } else {
+                        window.scrollBy({top:2,behavior:'smooth'});
+                    }
+                }, 30);
+            }
+        }
+        function stopScroll() {
+            scrollActive = false;
+            document.getElementById('scrollBtn').textContent = 'Scroll Down';
+            if (scrollInterval) {
+                clearInterval(scrollInterval);
+                scrollInterval = null;
+            }
+        }
+        document.getElementById('scrollBtn').onclick = function() {
+            if (scrollActive) {
+                stopScroll();
+            } else {
+                startScroll();
+            }
+        };
+
+        // Music control for user interaction (required for most browsers)
+        const bgAudio = document.getElementById('bgAudio');
+        document.getElementById('musicBtn').onclick = function() {
+            if (bgAudio.paused) {
+                bgAudio.play().catch(() => {
+                    alert("Music can't autoplay. Please check your browser settings or file path.");
+                });
+                this.textContent = 'Pause Music';
+            } else {
+                bgAudio.pause();
+                this.textContent = 'Play Music';
+            }
+        };
+
+        // Try to play music on first user click anywhere (best effort)
+        window.addEventListener('DOMContentLoaded', function() {
+            function firstPlay() {
+                if(bgAudio.paused) {
+                    bgAudio.play().catch(()=>{});
+                }
+                document.body.removeEventListener('click', firstPlay);
+            }
+            document.body.addEventListener('click', firstPlay);
+        });
+
+        // Show/hide Back to Top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 220) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        });
+        backToTopBtn.onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            stopScroll();
+        };
+        // Hide button by default
+        backToTopBtn.style.display = "none";
+    </script>

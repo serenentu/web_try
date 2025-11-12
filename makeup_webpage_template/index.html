@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeautyVibe - Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- BV injected styles: filters + sort + grid -->
+  <style>
+    :root {
+      --bv-border: #e5e7eb;
+      --bv-muted: #6b7280;
+      --bv-chip: #f3f4f6;
+      --bv-chip-on: #e0e7ff;
+      --bv-card: #ffffff;
+      --bv-shadow: 0 1px 2px rgba(0,0,0,.06), 0 1px 6px rgba(0,0,0,.04);
+    }
+    .bv-toolbar { display:grid; grid-template-columns:1fr; gap:12px; align-items:center; margin:16px 0 12px; }
+    @media (min-width:768px){ .bv-toolbar{ grid-template-columns:1fr auto auto; } }
+    .bv-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+    .bv-chip{ border:1px solid var(--bv-border); border-radius:999px; padding:8px 12px; background:var(--bv-chip); cursor:pointer; user-select:none; font-size:14px; }
+    .bv-chip[aria-pressed="true"]{ background:var(--bv-chip-on); }
+    .bv-sort select{ padding:10px 12px; border-radius:10px; border:1px solid var(--bv-border); background:var(--bv-card); font-size:14px; }
+    .bv-count{ color:var(--bv-muted); font-size:14px; }
+    .bv-grid{ display:grid; gap:14px; grid-template-columns:repeat(2, minmax(0,1fr)); }
+    @media (min-width:880px){ .bv-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
+    @media (min-width:1140px){ .bv-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
+    .bv-card{ background:var(--bv-card); border:1px solid var(--bv-border); border-radius:14px; box-shadow:var(--bv-shadow); overflow:hidden; display:flex; flex-direction:column; height:100%; }
+    .bv-thumb{ aspect-ratio:4/3; background:#f8fafc; display:grid; place-items:center; }
+    .bv-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .bv-body{ padding:12px; display:flex; flex-direction:column; gap:8px; flex:1; }
+    .bv-title{ font-size:15px; line-height:1.3; }
+    .bv-meta{ display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--bv-muted); margin-top:auto; }
+    .bv-badge{ padding:4px 8px; border:1px solid var(--bv-border); border-radius:999px; }
+    .bv-price{ font-weight:600; }
+    .bv-actions{ padding:0 12px 12px; }
+    .bv-actions button{ padding:10px 12px; width:100%; border-radius:10px; border:1px solid var(--bv-border); background:#111827; color:#fff; cursor:pointer; }
+    .bv-empty{ padding:20px; border:1px dashed var(--bv-border); border-radius:12px; text-align:center; color:var(--bv-muted); margin-top:8px; }
+    .sr-only{ position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0; }
+  </style>
+
+</head>
+<body>
+<header class="header">
+  <div class="ticker" role="region" aria-label="Scrolling text">
+  <div class="ticker__text">
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+  </div>
+</div>
+  <div class="container">
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="index.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img src="BeautyVibeLogo.png" alt="BeautyVibe Logo">
+    </div>
+      <div class="search-box">
+      <input type="text" id="SearchInput" placeholder="Search...">
+      <i class="fas fa-search"></i>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="cart.php" class="cart-icon"><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href="account.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+        </ul>
+      </nav>
+  </div>
+</header>
+<main>
+  <section class="products-section">
+    <h2>Products</h2>
+    
+    <!-- BV toolbar: filters + sort + count -->
+    <div class="bv-toolbar" aria-label="Filters and sorting">
+      <div class="bv-chips" role="group" aria-label="Category filters">
+        <button class="bv-chip" data-cat="lips" aria-pressed="true">💄 Lips</button>
+        <button class="bv-chip" data-cat="face" aria-pressed="true">🧴 Face</button>
+        <button class="bv-chip" data-cat="eyes" aria-pressed="true">👁️ Eyes</button>
+      </div>
+      <div class="bv-sort">
+        <label for="bv-sort" class="sr-only">Sort</label>
+        <select id="bv-sort" aria-label="Sort products">
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="alpha-asc">Name: A → Z</option>
+          <option value="alpha-desc">Name: Z → A</option>
+        </select>
+      </div>
+      <div class="bv-count" id="bv-count" aria-live="polite"></div>
+    </div>
+
+    <!-- BV dynamic grid -->
+    <div id="productsGrid" class="bv-grid" aria-live="polite" aria-busy="false"></div>
+    <div id="bv-empty" class="bv-empty" hidden>No products match your filters.</div>
+
+  </section>
+<script src="productfilters.js"></script>
+</main>
+<footer class="footer">
+    <p>&copy; 2025 BeautyVibe. All rights reserved.</p>
+</footer>
+</body>
+</html>

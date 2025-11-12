@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    .profile-section { display: flex; gap: 20px; padding: 35px 90px; margin: 30px; align-items: center;}
+    .profile-picture-circle { width: 140px; height: 140px; border: 2.5px solid #ffd2bc; border-radius: 50%; display:flex; align-items: center; justify-content: center; font-size: 1.1em; color: #ffd2bc; background: #f8f9fa; padding: 1px; margin: 5px auto 2px; cursor: pointer; transition: border-color 0.2s; }
+    .profile-fields { display: flex; flex-direction: column; gap: 5px; flex: 1; margin: 0px 10px;}
+    .profile-fields label { font-size: 1.5em; color: #da8277dc; margin-bottom: 1px; font-weight: 500; letter-spacing: 0.04em;}
+    .profile-fields input { padding: 10px 10px 10px ; margin-top: 1px; border: 2px solid #ffd2bc; border-radius: 7px; font-size: 1em; background: #f8f9fa; color: black; outline: none; transition: border-color 0.2s;}
+    .profile-fields input:focus { border-color: #ffd2bc;}
+    .order-history-btn, .edit-btn, .save-btn, .cancel-btn { margin: 6px 6px; padding: 7px 18px; border-radius: 6px; border: 2px solid #ffd2bc; color: #da8277dc; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s; border-color: #ffd2bc; background-color: white; text-decoration: none; display: inline-block;}
+    .edit-actions { margin-top: 10px;}
+    .back-btn {
+        color: #da8277dc;
+        border: 2px solid #ffd2bc;
+        border-radius: 7px;
+        padding: 10px 10px;
+        font-size: 1em;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 18px 50px;
+        transition: background 0.2s, color 0.2s;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .back-btn:hover, .edit-btn:hover, .order-history-btn:hover, .edit-btn:hover, .cancel-btn:hover, .save-btn:hover {
+        background: #f8b500;
+        color: #da8277dc;
+    }
+    </style>
+    <script>
+    // Simple edit toggle logic
+    function enableEdit() {
+        document.querySelectorAll('.profile-fields input').forEach(i => i.removeAttribute('readonly'));
+        document.getElementById('edit-btn').style.display = 'none';
+        document.getElementById('edit-actions').style.display = '';
+    }
+    function saveEdit() {
+        document.querySelectorAll('.profile-fields input').forEach(i => i.setAttribute('readonly', 'readonly'));
+        document.getElementById('edit-btn').style.display = '';
+        document.getElementById('edit-actions').style.display = 'none';
+        // TODO: Add AJAX to save changes if needed
+    }
+    function cancelEdit() {
+        // Reset to original values (could be expanded with JS to restore true originals)
+        document.getElementById('name').value = 'Serene';
+        document.getElementById('gender').value = 'F';
+        document.getElementById('email').value = 'raviserene123@gmail.com';
+        document.getElementById('phone').value = '87095305';
+        saveEdit();
+    }
+    </script>
+</head>
+<body>
+<header class="header">
+  <div class="ticker" role="region" aria-label="Scrolling text">
+  <div class="ticker__text">
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+    <span>Catch our #WinterBeauty exclusive sale!</span>
+    <span>Up to 30% off on selected items.</span>
+    <span>Free shipping on orders over $50.</span>
+    <span>Available only during Winter!</span>
+  </div>
+</div>
+  <div class="container">
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="index.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img src="BeautyVibeLogo.png" alt="BeautyVibe Logo">
+    </div>
+      <div class="search-box">
+      <input type="text" id="SearchInput" placeholder="Search...">
+      <i class="fas fa-search"></i>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="cart.php" class="cart-icon"><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href="account.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+        </ul>
+      </nav>
+  </div>
+</header>
+<main>
+   <!--- <section class="container"> -->
+        <!-- Navigation Back Button -->
+        <a href="index.html" class="back-btn">&#8592; Back</a>
+         <!-- Profile Picture -->
+        <div>
+            <label for="profilePicInput" class="profile-picture-circle">picture
+            <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+            </label>
+        </div>
+        <div class="profile-section">
+            <!-- Info Fields -->
+            <form class="profile-fields" onsubmit="return false;">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="Serene" readonly>
+
+                <label for="gender">Gender</label>
+                <input type="text" id="gender" name="gender" value="F" readonly>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="raviserene123@gmail.com" readonly>
+
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" value="87095305" readonly>
+                <div class="edit-actions" id="edit-actions" style="display:none;">
+                    <button class="save-btn" onclick="saveEdit()">Save</button>
+                    <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+            <div style="display: flex; flex-direction: column;">
+                <button id="edit-btn" class="edit-btn" onclick="enableEdit()">Edit</button>
+                <a href="order_history.php" class="order-history-btn">Order History</a>
+            </div>
+        </div>
+   <!--- </section> -->
+</main>
+<footer class="footer">
+    <p>&copy; 2025 BeautyVibe. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

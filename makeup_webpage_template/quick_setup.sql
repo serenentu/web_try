@@ -1,0 +1,75 @@
+-- Quick Database Setup for BeautyVibe
+-- Run this with: mysql -u root -p < quick_setup.sql
+
+CREATE DATABASE IF NOT EXISTS shop_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'shop_user'@'localhost' IDENTIFIED BY 'ShopPass123!';
+GRANT ALL PRIVILEGES ON shop_db.* TO 'shop_user'@'localhost';
+FLUSH PRIVILEGES;
+USE shop_db;
+
+-- Now import the schema
+
+-- schema.sql : create tables (MySQL)
+CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price DECIMAL(10,2) NOT NULL,
+  stock INT NOT NULL DEFAULT 0,
+  image_path VARCHAR(255),
+  category VARCHAR(100)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS customers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
+  phone VARCHAR(50),
+  address TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT DEFAULT NULL,
+  session_token VARCHAR(128) DEFAULT NULL,
+  total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  customer_name VARCHAR(255) DEFAULT NULL,
+  customer_email VARCHAR(255) DEFAULT NULL,
+  customer_phone VARCHAR(50) DEFAULT NULL,
+  address_line1 VARCHAR(255) DEFAULT NULL,
+  address_line2 VARCHAR(255) DEFAULT NULL,
+  city VARCHAR(100) DEFAULT NULL,
+  state VARCHAR(100) DEFAULT NULL,
+  postal_code VARCHAR(50) DEFAULT NULL,
+  country VARCHAR(100) DEFAULT NULL,
+  payment_method VARCHAR(50) DEFAULT NULL,
+  payment_last4 VARCHAR(8) DEFAULT NULL,
+  design_path VARCHAR(255) DEFAULT NULL,
+  customer_notes TEXT DEFAULT NULL,
+  status VARCHAR(50) NOT NULL DEFAULT 'pending',
+  updated_at DATETIME DEFAULT NULL,
+  INDEX(user_id),
+  INDEX(session_token)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT NOT NULL,
+  product_id INT DEFAULT NULL,
+  product_name VARCHAR(255) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  quantity INT NOT NULL,
+  subtotal DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  session_id VARCHAR(128) NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Order Confirmation - BeautyVibe (Demo)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #f8f9fa; font-family: 'Segoe UI', Arial, sans-serif; }
+        .confirmation-container { max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .success-icon { text-align: center; font-size: 64px; color: #28a745; margin-bottom: 20px; }
+        h1 { color: #c44569; text-align: center; margin-bottom: 10px; }
+        .order-info { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .info-row { display: flex; justify-content: space-between; margin: 8px 0; }
+        .info-label { font-weight: 600; color: #555; }
+        .order-items-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .order-items-table th { background: #c44569; color: white; padding: 12px; text-align: left; }
+        .order-items-table td { padding: 12px; border-bottom: 1px solid #dee2e6; }
+        .order-items-table tr:hover { background: #f8f9fa; }
+        .total-row { font-weight: 700; font-size: 1.1em; color: #c44569; }
+        .actions { text-align: center; margin-top: 30px; }
+        .btn { display: inline-block; padding: 12px 24px; margin: 5px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .btn-primary { background: #c44569; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn:hover { opacity: 0.9; }
+        .email-notice { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="success-icon">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p style="text-align: center; color: #666; font-size: 1.1em;">Thank you for your purchase at BeautyVibe</p>
+
+        <div class="email-notice">
+            <strong>📧 Confirmation Email Sent!</strong><br>
+            A confirmation email has been sent to <strong>customer@example.com</strong> with your order details and tracking information.
+        </div>
+
+        <div class="order-info">
+            <h2 style="margin-top: 0;">Order Information</h2>
+            <div class="info-row">
+                <span class="info-label">Order Number:</span>
+                <span>#10001</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Order Date:</span>
+                <span>November 2, 2025 - 2:30 PM</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status:</span>
+                <span style="color: #28a745; font-weight: 600;">Pending</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Customer Name:</span>
+                <span>Jane Smith</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span>customer@example.com</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Phone:</span>
+                <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Shipping Address:</span>
+                <span>
+                    123 Beauty Lane, Apt 4B<br>
+                    New York, NY 10001<br>
+                    United States
+                </span>
+            </div>
+        </div>
+
+        <h2>Order Items</h2>
+        <table class="order-items-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Velvet Matte Lipstick</td>
+                    <td>$19.90</td>
+                    <td>2</td>
+                    <td>$39.80</td>
+                </tr>
+                <tr>
+                    <td>Hydra Glow Foundation</td>
+                    <td>$34.50</td>
+                    <td>1</td>
+                    <td>$34.50</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Total:</td>
+                    <td>$74.30</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin: 20px 0;">
+            <h3>Your Notes</h3>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                Please use the red shade for the lipstick. Looking forward to trying these products!
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="#" class="btn btn-primary">Review Order / Request Changes</a>
+            <a href="order_history_demo.html" class="btn btn-secondary">View Order History</a>
+            <a href="index.html" class="btn btn-secondary">Continue Shopping</a>
+        </div>
+    </div>
+</body>
+</html>
